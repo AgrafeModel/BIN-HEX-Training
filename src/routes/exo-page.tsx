@@ -20,6 +20,7 @@ export function ExoPage() {
   const [res, setRes] = useState<string>("");
   const [status, setStatus] = useState<string>("");
   const [input, setInput] = useState<string>("");
+  const [expectedOutput, setExpectedOutput] = useState<string>("");
 
   const [userCode, setUserCode] = useState<string>("");
 
@@ -37,6 +38,7 @@ export function ExoPage() {
       const uRes = runCode(`${startingcode}\n${text}`);
       const eRes = runCode(`${startingcode}\n${exo?.solution || ""}`);
       console.log(uRes, eRes);
+      setExpectedOutput(eRes.join("\n"));
       setRes(uRes.join("\n"));
 
       if (eRes.join("\n") === uRes.join("\n")) {
@@ -76,14 +78,14 @@ export function ExoPage() {
         </div>
       ) : (
         <div className="w-full flex flex-col items-center justify-center p-8 ">
-          <div className="flex flex-col items-center justify-center h-full">
+          <div className="flex flex-col items-center justify-center h-full w-full">
             <h2 className="text-2xl font-bold mb-4">{exo?.title}</h2>
-            <p className="text-gray-600 mb-4 max-w-2xl">{exo?.description}</p>
+            <p className="text-gray-600 mb-4 ">{exo?.description}</p>
 
-            <div className="flex flex-col w-full bg-gray-900">
+            <div className="flex flex-col w-full bg-gray-900 max-w-screen-md">
               <form
                 onSubmit={handleSubmit}
-                className="w-full max-w-2xl h-full overflow-y-hidden h-64"
+                className="w-full  h-full overflow-y-hidden h-64"
               >
                 <div className="relative flex flex-row">
                   {/* Line Numbers */}
@@ -108,7 +110,7 @@ export function ExoPage() {
                 </div>
               </form>
               <div className="w-full bg-gray-800 flex align-center justify-between border border-gray-700">
-                <div className="flex items-center">
+                <div className="flex flex-col items-start justify-start">
                   <p
                     className={clsx(
                       status === "Success" && "text-green-500",
@@ -116,8 +118,15 @@ export function ExoPage() {
                       "text-center p-2 flex-row",
                     )}
                   >
-                    <p className="text-gray-200">{"> input = " + input}</p>
-                    {res}
+                    <p className="text-gray-200 text-start">
+                      {"> input = " + (input == "" ? "..." : input)}
+                    </p>
+                    <p className="text-start">{res}</p>
+                    {expectedOutput != "" && (
+                      <p className="text-start text-gray-400">
+                        Expected Output: {expectedOutput}
+                      </p>
+                    )}
                   </p>
                 </div>
 

@@ -11,7 +11,7 @@ export function Link({
 }) {
   return (
     <a
-      href={import.meta.env.DEV ? "/" : "/BIN-HEX-Training" + to}
+      href={(import.meta.env.DEV ? "" : "/BIN-HEX-Training") + to}
       className={className}
       id={id}
     >
