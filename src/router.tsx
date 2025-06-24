@@ -16,7 +16,5 @@ export const router = createBrowserRouter(
       <Route path="/exo/:id" element={<ExoPage />} />
     </Route>,
   ),
-  {
-    basename: "/BIN-HEX-Training/",
-  },
+  { basename: import.meta.env.DEV ? "/" : "/BIN-HEX-Training/" },
 );

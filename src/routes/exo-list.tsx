@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { binaryExos } from "../exos/list";
+import { Link } from "../components/Link";
 
 export function ExoListPage() {
   return (
@@ -14,8 +15,8 @@ export function ExoListPage() {
 function ExoList() {
   return binaryExos.map((exo) => {
     return (
-      <a
-        href={`/exo/${exo.id}`}
+      <Link
+        to={`/exo/${exo.id}`}
         id={`exo-${exo.id}`}
         className="bg-white border border-gray-200 rounded-lg shadow-md p-4 mb-4 transition-transform transform hover:-translate-y-1 hover:shadow-lg"
       >
@@ -42,7 +43,7 @@ function ExoList() {
             );
           })}
         </div>
-      </a>
+      </Link>
     );
   });
 }

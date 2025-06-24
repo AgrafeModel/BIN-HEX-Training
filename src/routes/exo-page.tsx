@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { GetExoByID } from "../exos/list";
 import type { Exo } from "../types/exo";
 import clsx from "clsx";
+import { Link } from "../components/Link";
 
 export function ExoPage() {
   const { id } = useParams();
@@ -69,9 +70,9 @@ export function ExoPage() {
       ) : error || exo == undefined ? (
         <div className="flex flex-col w-full align-center justify-center">
           <p className="w-max">Error: {error || "Exo not found"}</p>
-          <a href="/" className="w-max text-blue-500 hover:underline">
+          <Link to="/" className="w-max text-blue-500 hover:underline">
             Go back to home
-          </a>
+          </Link>
         </div>
       ) : (
         <div className="w-full flex flex-col items-center justify-center p-8 ">
@@ -142,23 +143,23 @@ export function ExoPage() {
           </div>
           <div className="flex flex-row w-full justify-between align-center fixed bottom-0 p-8">
             {parseInt(id || "0") - 1 > 0 ? (
-              <a
-                href={"/exo/" + (parseInt(id || "0") - 1)}
+              <Link
+                to={"/exo/" + (parseInt(id || "0") - 1)}
                 className="px-4 py-2 bg-gray-800 text-gray-400 font-mono text-sm leading-6 shadow-inner focus:outline-none focus:ring-0"
               >
                 Previous
-              </a>
+              </Link>
             ) : (
               <div></div>
             )}
 
             {parseInt(id || "0") + 1 > 0 ? (
-              <a
-                href={"/exo/" + (parseInt(id || "0") + 1)}
+              <Link
+                to={"/exo/" + (parseInt(id || "0") + 1)}
                 className="px-4 py-2 bg-gray-800 text-gray-400 font-mono text-sm leading-6 shadow-inner focus:outline-none focus:ring-0"
               >
                 Next
-              </a>
+              </Link>
             ) : (
               <div></div>
             )}
