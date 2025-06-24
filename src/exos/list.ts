@@ -247,6 +247,166 @@ for (let num of arr) {
 }
 console.log(unique);`,
   },
+  {
+    id: 16,
+    title: "Trouver le bit pair le plus bas",
+    description:
+      "Écris une fonction qui trouve le bit pair le plus bas dans un entier `x`.",
+    hint: "Utilisez un masque pour cibler les bits pairs.",
+    difficulty: Difficulty.MEDIUM,
+    tags: ["bitwise", "mask", "binary"],
+    code: `let x = input;
+  // Ton code ici
+  `,
+    solution: `let x = input;
+  let mask = 0xAAAAAAAA; // Masque pour les bits pairs
+  console.log(x & mask);`,
+  },
+  {
+    id: 17,
+    title: "Additionner deux nombres sans opérateur +",
+    description:
+      "Écris une fonction qui additionne deux entiers `a` et `b` sans utiliser l'opérateur `+`.",
+    hint: "Utilisez les opérateurs XOR et AND pour simuler une addition.",
+    difficulty: Difficulty.HARD,
+    tags: ["bitwise", "binary", "addition"],
+    code: `let a = input1, b = input2;
+  // Ton code ici
+  `,
+    solution: `let a = input1, b = input2;
+  while (b !== 0) {
+    let carry = a & b;
+    a = a ^ b;
+    b = carry << 1;
+  }
+  console.log(a);`,
+  },
+  {
+    id: 18,
+    title: "Convertir un entier en binaire",
+    description:
+      "Écris une fonction qui convertit un entier `x` en une chaîne binaire.",
+    hint: "Utilisez une boucle pour extraire chaque bit.",
+    difficulty: Difficulty.EASY,
+    tags: ["binary", "conversion"],
+    code: `let x = input;
+  // Ton code ici
+  `,
+    solution: `let x = input;
+  console.log(x.toString(2));`,
+  },
+  {
+    id: 19,
+    title: "Trouver le bit le plus bas à 1",
+    description:
+      "Écris une fonction qui trouve le bit le plus bas à 1 dans un entier `x`.",
+    hint: "Utilisez l'opération `x & -x` pour isoler le bit le plus bas à 1.",
+    difficulty: Difficulty.MEDIUM,
+    tags: ["bitwise", "binary", "lowest bit"],
+    code: `let x = input;
+  // Ton code ici
+  `,
+    solution: `let x = input;
+  console.log(x & -x);`,
+  },
+  {
+    id: 20,
+    title: "Inverser l'ordre des bits",
+    description:
+      "Écris une fonction qui inverse l'ordre des bits dans un entier `x`.",
+    hint: "Utilisez des masques et des décalages pour inverser les bits.",
+    difficulty: Difficulty.HARD,
+    tags: ["bitwise", "binary", "reverse bits"],
+    code: `let x = input;
+  // Ton code ici
+  `,
+    solution: `let x = input;
+  let result = 0;
+  for (let i = 0; i < 32; i++) {
+    result = (result << 1) | (x & 1);
+    x >>= 1;
+  }
+  console.log(result);`,
+  },
+  {
+    id: 21,
+    title: "Convertir un entier en hexadécimal",
+    description:
+      "Écris une fonction qui convertit un entier `x` en une chaîne hexadécimale.",
+    hint: "Utilisez la méthode `toString` avec une base de 16.",
+    difficulty: Difficulty.EASY,
+    tags: ["hexadecimal", "conversion"],
+    code: `let x = input;
+  // Ton code ici
+  `,
+    solution: `let x = input;
+  console.log(x.toString(16));`,
+  },
+  {
+    id: 22,
+    title: "Vérifier si deux nombres ont des bits en commun",
+    description:
+      "Écris une fonction qui vérifie si deux entiers `a` et `b` ont au moins un bit en commun.",
+    hint: "Utilisez l'opération AND pour vérifier les bits communs.",
+    difficulty: Difficulty.MEDIUM,
+    tags: ["bitwise", "binary", "common bits"],
+    code: `let a = input1, b = input2;
+  // Ton code ici
+  `,
+    solution: `let a = input1, b = input2;
+  if (a & b) {
+    console.log("Yes");
+  } else {
+    console.log("No");
+  }`,
+  },
+  {
+    id: 23,
+    title: "Compter les bits différents entre deux nombres",
+    description:
+      "Écris une fonction qui compte le nombre de bits différents entre deux entiers `a` et `b`.",
+    hint: "Utilisez l'opération XOR pour identifier les bits différents.",
+    difficulty: Difficulty.HARD,
+    tags: ["bitwise", "binary", "XOR"],
+    code: `let a = input1, b = input2;
+  // Ton code ici
+  `,
+    solution: `let a = input1, b = input2;
+  let diff = a ^ b, count = 0;
+  while (diff) {
+    count += diff & 1;
+    diff >>= 1;
+  }
+  console.log(count);`,
+  },
+  {
+    id: 24,
+    title: "Multiplier par 3 sans opérateur *",
+    description:
+      "Écris une fonction qui multiplie un entier `x` par 3 sans utiliser l'opérateur `*`.",
+    hint: "Utilisez des décalages et des additions.",
+    difficulty: Difficulty.MEDIUM,
+    tags: ["bitwise", "shift", "multiply"],
+    code: `let x = input;
+  // Ton code ici
+  `,
+    solution: `let x = input;
+  console.log((x << 1) + x);`,
+  },
+  {
+    id: 25,
+    title: "Diviser par 4 sans opérateur /",
+    description:
+      "Écris une fonction qui divise un entier `x` par 4 sans utiliser l'opérateur `/`.",
+    hint: "Utilisez une opération de décalage à droite.",
+    difficulty: Difficulty.EASY,
+    tags: ["bitwise", "shift", "divide"],
+    code: `let x = input;
+  // Ton code ici
+  `,
+    solution: `let x = input;
+  console.log(x >> 2);`,
+  },
 ];
 
 export { binaryExos };
