@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { Book, X } from "lucide-react";
 import { useState } from "react";
 
 export default function BitwiseCheatSheet() {
@@ -8,8 +9,11 @@ export default function BitwiseCheatSheet() {
     <>
       <button
         onClick={() => setOpen(!open)}
-        className="text-black hover:text-gray-800 focus:ring-0 focus:ring-opacity-50 focus:outline-none border border-gray-300 rounded p-2 hover:bg-gray-100"
+        className="
+        flex flex-row align-middle items-center
+        text-black hover:text-gray-800 focus:ring-0 focus:ring-opacity-50 focus:outline-none border border-gray-300 rounded p-2 hover:bg-gray-100"
       >
+        <Book className="h-4 w-4 mr-2" />
         Cheat Sheet
       </button>
       <div
@@ -25,20 +29,7 @@ export default function BitwiseCheatSheet() {
             onClick={() => setOpen(!open)}
             className="text-gray-800 hover:text-gray-800 focus:ring-0 focus:ring-opacity-50 focus:outline-none border border-gray-300 rounded p-2 hover:bg-gray-100"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
+            <X className="h-4 w-4" />
           </button>
           <h1 className="text-2xl font-bold text-gray-800">
             🧠 Bitwise Cheat Sheet (JavaScript)
