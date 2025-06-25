@@ -5,6 +5,7 @@ import { GetExoByID } from "../exos/list";
 import type { Exo } from "../types/exo";
 import clsx from "clsx";
 import { Link } from "../components/Link";
+import { Lightbulb } from "lucide-react";
 
 export function ExoPage() {
   const { id } = useParams();
@@ -21,6 +22,9 @@ export function ExoPage() {
   const [status, setStatus] = useState<string>("");
   const [input, setInput] = useState<string>("");
   const [expectedOutput, setExpectedOutput] = useState<string>("");
+
+  const [showHint, setShowHint] = useState(false);
+  const [showAnswer, setShowAnswer] = useState(false);
 
   const [userCode, setUserCode] = useState<string>("");
 
@@ -46,6 +50,15 @@ export function ExoPage() {
       } else {
         setStatus("Failure");
       }
+    }
+  }
+
+  function onHintButtonClicked() {
+    if (!showHint) {
+      setShowHint(true);
+    } else {
+      setShowAnswer(true);
+      setUserCode(exo?.solution || "");
     }
   }
 
@@ -81,11 +94,16 @@ export function ExoPage() {
           <div className="flex flex-col items-center justify-center h-full w-full">
             <h2 className="text-2xl font-bold mb-4">{exo?.title}</h2>
             <p className="text-gray-600 mb-4 ">{exo?.description}</p>
+            {showHint && (
+              <p id="hint" className="text-gray-400 mb-4">
+                {exo?.hint}
+              </p>
+            )}
 
-            <div className="flex flex-col w-full bg-gray-900 max-w-screen-md">
+            <div className="flex flex-col w-full bg-gray-900 max-w-screen-md relative">
               <form
                 onSubmit={handleSubmit}
-                className="w-full  h-full overflow-y-hidden h-64"
+                className="w-full overflow-y-hidden h-64"
               >
                 <div className="relative flex flex-row">
                   {/* Line Numbers */}
@@ -102,13 +120,33 @@ export function ExoPage() {
                   <textarea
                     ref={textareaRef}
                     contentEditable={true}
-                    content={userCode}
+                    value={userCode}
                     defaultValue={userCode}
                     onChange={(e) => setUserCode(e.target.value)}
-                    className="border-l border-gray-700 p-4 min-h-64 w-full h-max bg-gray-900 text-white font-mono text-sm leading-6 shadow-inner focus:outline-none focus:ring-0  resize-none"
+                    className={clsx(
+                      showAnswer && "text-yellow-400",
+                      "border-l border-gray-700 p-4 min-h-64 w-full h-max bg-gray-900 text-white font-mono text-sm leading-6 shadow-inner focus:outline-none focus:ring-0  resize-none",
+                    )}
                   />
                 </div>
               </form>
+
+              {/* Side bar for help and tips */}
+              <div id="side" className="absolute right-0 top-0 flex flex-col">
+                <button
+                  disabled={showAnswer}
+                  onClick={onHintButtonClicked}
+                  className="
+                  disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed
+                  bg-gray-800 text-gray-200 p-2 border-gray-700 rounded-none focus:outline-none hover:border-gray-600 active:bg-gray-700"
+                >
+                  <Lightbulb
+                    color={showAnswer ? "black" : showHint ? "yellow" : "gray"}
+                    className="w-6 h-6"
+                  />
+                </button>
+              </div>
+
               <div className="w-full bg-gray-800 flex align-center justify-between border border-gray-700">
                 <div className="flex flex-col items-start justify-start">
                   <p
